@@ -1,0 +1,8 @@
+# Vitrine statique GitHub Pages : TOUT le dossier est publié (data/ et images/ compris), sauf :
+.env
+*.db
+node_modules/
+*.sauvegarde
+# Outils réservés à votre ordinateur (pas nécessaires en ligne)
+outils/
+serve-local.js
