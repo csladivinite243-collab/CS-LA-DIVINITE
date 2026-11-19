@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Administration — C.S LA DIVINITÉ</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header><a href="/" class="brand">C.S LA DIVINITÉ <span>Administration</span></a><a href="/" class="back">Voir le site ↗</a></header>
+<main>
+<section id="login" class="panel auth">
+  <div class="mark">C.S</div><h1>Administration du site</h1>
+  <p>Connectez-vous avec le compte administrateur autorisé.</p>
+  <form id="loginForm">
+    <label>Adresse e-mail<input id="email" type="email" autocomplete="username" required></label>
+    <label>Mot de passe<input id="password" type="password" autocomplete="current-password" required></label>
+    <button type="submit">Se connecter</button>
+  </form><p id="loginMsg" class="msg" role="status"></p>
+</section>
+<section id="dashboard" hidden>
+  <div class="welcome"><div><p class="eyebrow">ESPACE PRIVÉ</p><h1>Gestion du site</h1><p id="who"></p></div><button id="logout" class="ghost">Déconnexion</button></div>
+  <nav class="tabs"><button class="tab active" data-tab="settings">Identité & textes</button><button class="tab" data-tab="items">Pages & contenus</button><button class="tab" data-tab="media">Médiathèque</button></nav>
+  <section class="panel pane" id="settingsPane"><div class="panehead"><div><h2>Identité et textes</h2><p>Modifiez les informations visibles sur le site.</p></div><button id="saveSettings">Enregistrer les modifications</button></div><div id="settingsForm" class="fields"></div><p id="settingsMsg" class="msg"></p></section>
+  <section class="panel pane" id="itemsPane" hidden><div class="panehead"><div><h2>Pages et contenus</h2><p>Gérez les classes, options, actualités, photos, équipe et FAQ. Conservez le format JSON.</p></div><button id="saveItems">Enregistrer les contenus</button></div><textarea id="itemsJson" spellcheck="false"></textarea><p id="itemsMsg" class="msg"></p></section>
+  <section class="panel pane" id="mediaPane" hidden><div class="panehead"><div><h2>Médiathèque</h2><p>Importez les images utilisées sur le site. Formats JPG, PNG, WEBP ou GIF — 5 Mo maximum.</p></div></div><form id="uploadForm" class="upload"><input id="mediaFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required><button>Importer l’image</button></form><p id="mediaMsg" class="msg"></p><div id="mediaResult"></div></section>
+</section>
+</main>
+<footer>© C.S LA DIVINITÉ · La bravoure, la discipline et la réussite</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
+<script src="admin.js"></script>
+</body></html>
