@@ -59,6 +59,7 @@ $('#lbx').onclick=()=>$('#lb').close();$('#mb').onclick=()=>{const o=$('#nav').c
 addEventListener('hashchange',route);
 const probeAny=async u=>{if(!u)return '';const b=u.replace(/\.\w+$/,'');for(const x of [u.slice(b.length),'.png','.jpg','.jpeg','.webp','.PNG','.JPG','.JPEG','.WEBP']){const r=await probe(b+x);if(r)return r}return ''};
 const probe=u=>u?new Promise(r=>{const i=new Image();i.onload=()=>r(u);i.onerror=()=>r('');i.src=u}):Promise.resolve('');
-Promise.resolve(window.SITE).then(async d=>{const s=d.settings;
+const sitePromise = location.hostname.endsWith('github.io') ? Promise.resolve(window.SITE) : fetch('/api/site',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Lecture du site impossible');return r.json()});
+sitePromise.then(async d=>{const s=d.settings;
  await Promise.all([...['logo','hero_image','bg_primaire','bg_secondaire'].map(async k=>{s[k]=await probeAny(s[k])}),...d.items.map(async i=>{i.image=await probe(i.image)})]);
  d.items=d.items.filter(i=>i.kind!=='photo'||i.image);D=d;shell();route()}).catch(()=>{$('#main').innerHTML='<div class="w"><p>Le site est momentanément indisponible. Veuillez réessayer.</p></div>'});
